@@ -26,7 +26,7 @@ Admin表
 
 | id       |        | primary key autoincrement | int    |
 | -------- | ------ | ------------------------- | ------ |
-| number   | 工单号 |                           | string |
+| username | 用户名 |                           | string |
 | password | 密码   |                           | string |
 
 Deposit表
