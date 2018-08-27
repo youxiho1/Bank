@@ -5,13 +5,14 @@
 | id       |          | primary key autoincrement | int    |
 | -------- | -------- | ------------------------- | ------ |
 | account  | 账号     | 777 777 7                 | int    |
-| name     | 姓名     | 2                         | string |
+| name     | 姓名     | 2-10位汉字                | string |
 | password | 密码     | 6位数字，如何存储？       | string |
 | openDate | 开户日期 |                           | string |
 | isLost   | 挂失情况 | 默认false（未挂失）       | bool   |
 | lostDate | 挂失日期 |                           | string |
 | address  | 地址     | 5-50位汉字                | string |
 | idNumber | 身份证号 | 18位，最后一位可能是x     | string |
+| salt     | 盐       | ？？？？？？？？？？？    | string |
 
 Staff表
 
