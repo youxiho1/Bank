@@ -1,1 +1,7 @@
-﻿  MFCBANK.vcxproj -> C:\Users\Alex\git\MFCBANK\Debug\MFCBANK.exe
+﻿  stdafx.cpp
+  CppSQLite3.cpp
+  MFCBANK.cpp
+  MFCBANKDlg.cpp
+  正在生成代码...
+  sqlite3.c
+  MFCBANK.vcxproj -> C:\Users\Alex\git\Bank\Debug\MFCBANK.exe
