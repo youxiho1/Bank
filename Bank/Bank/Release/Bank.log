@@ -1,0 +1,16 @@
+﻿  stdafx.cpp
+  Bank.cpp
+  BankDoc.cpp
+  BankView.cpp
+  ClassView.cpp
+  CppSQLite3.cpp
+  FileView.cpp
+  MainFrm.cpp
+  OutputWnd.cpp
+  PropertiesWnd.cpp
+  ViewTree.cpp
+  sqlite3.c
+  正在生成代码
+  All 2569 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  Bank.vcxproj -> C:\Users\Alex\git\Bank\Bank\Release\Bank.exe

@@ -4,7 +4,7 @@
  * Maintained by NeoSmart Technologies <http://neosmart.net/>
  * See LICENSE file for copyright and license info
 */
-
+#include "stdafx.h"
 #include "CppSQLite3.h"
 #include <cstdlib>
 #include <utility>
