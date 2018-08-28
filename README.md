@@ -21,6 +21,7 @@ Staff表
 | number   | 工单号 | 8位                       | int    |
 | name     | 姓名   | 2-10位汉字                | string |
 | password | 密码   | 6-16位，如何存储？？？    | string |
+| salt     | 盐     |                           | string |
 
 Admin表
 
@@ -28,6 +29,7 @@ Admin表
 | -------- | ------ | ------------------------- | ------ |
 | username | 用户名 |                           | string |
 | password | 密码   |                           | string |
+| salt     | 盐     |                           | string |
 
 Deposit表
 
