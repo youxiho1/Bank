@@ -1,5 +1,4 @@
 #include "user.h"
-#include <iostream>
 #include <string>
 #include "CppSQLite3.h"
 #include "rand_string.h"
@@ -7,9 +6,6 @@
 #include "myTime.h"
 
 using namespace std;
-
-const char* dbFile = "bank.db";     //数据库名
-CppSQLite3DB db;                    //数据库类实例
 
 //初始化user
 User::User():account(0),name(""),hash_password(""),openDate(""),
@@ -26,7 +22,8 @@ string User::make_password(string password){
 
 //今天开户的用户数量
 int num_create_account_of_today(){
-    db.open(dbFile);
+    CppSQLite3DB db;
+    db.open("bank.db");
     string sql ="select * from user where opendate = \"" + nowTime_to_str() + "\"" ;
     CppSQLite3Table t = db.getTable(sql.c_str());
     db.close();
@@ -58,7 +55,8 @@ int newAccount(){
 
 //保存到数据库
 bool User::save(){
-    db.open(dbFile);
+    CppSQLite3DB db;
+    db.open("bank.db");
     string searchSql = "select * from user where account = " + to_string(account);
     CppSQLite3Table t = db.getTable(searchSql.c_str());
     if (t.numRows() > 0) {
@@ -101,7 +99,8 @@ void User::set_Lost(){
 
 //用户登录
 bool User::login(int account, string password){
-    db.open(dbFile);
+    CppSQLite3DB db;
+    db.open("bank.db");
     string sql ="select * from user where account = " + to_string(account);
     CppSQLite3Table t = db.getTable(sql.c_str());
     db.close();
