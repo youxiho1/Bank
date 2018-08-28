@@ -7,7 +7,7 @@ const char CCH[] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX
 
 std::string rand_str()
 {	
-	srand((unsigned)time(0));
+    srand((unsigned)time(0));
    	char ch[SIZE_CHAR + 1] = {0};
    
    	for (int i = 0; i < SIZE_CHAR; ++i)
