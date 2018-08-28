@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "user.h"
 #include <string>
 #include "CppSQLite3.h"

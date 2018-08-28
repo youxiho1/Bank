@@ -42,6 +42,15 @@
     <ClInclude Include="myTime.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="rand_string.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="staff.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="user.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCBANK.cpp">
@@ -57,6 +66,18 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CppSQLite3.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="myTime.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="rand_string.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="staff.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="user.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
