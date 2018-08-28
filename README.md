@@ -4,11 +4,11 @@
 
 | id       |          | primary key autoincrement | int    |
 | -------- | -------- | ------------------------- | ------ |
-| account  | 账号     | 777 777 7                 | int    |
+| account  | 账号     | 至少7位                   | int    |
 | name     | 姓名     | 2-10位汉字                | string |
 | password | 密码     | 6位数字，如何存储？       | string |
 | openDate | 开户日期 |                           | string |
-| isLost   | 挂失情况 | 默认false（未挂失）       | bool   |
+| isLost   | 挂失情况 | 默认0（未挂失）           | int    |
 | lostDate | 挂失日期 |                           | string |
 | address  | 地址     | 5-50位汉字                | string |
 | idNumber | 身份证号 | 18位，最后一位可能是x     | string |
@@ -38,7 +38,7 @@ Deposit表
 | depositDate | 存款日期   |                                       | string |
 | dueDate     | 到期日期   |                                       | string |
 | kind        | 储种       | 3 6 12 24 36      0(活期)             | int    |
-| flag        | 还能不能取 | 活期永远是1，定期初始是1，取一次变为0 | bool   |
+| flag        | 还能不能取 | 活期永远是1，定期初始是1，取一次变为0 | Int    |
 | elseMoney   | 剩余钱数   | （仅做计算余额和明日需要多少钱用）    | real   |
 | staffId     | 谁办的     |                                       | int    |
 
