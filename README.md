@@ -35,22 +35,22 @@ Deposit表
 
 | id          |            | primary key autoincrement             | int    |
 | ----------- | ---------- | ------------------------------------- | ------ |
-| userId      | 谁存的     |                                       | int    |
+| userAccount | 谁存的     |                                       | int    |
 | money       | 本金       |                                       | real   |
 | depositDate | 存款日期   |                                       | string |
 | dueDate     | 到期日期   |                                       | string |
 | kind        | 储种       | 3 6 12 24 36      0(活期)             | int    |
 | flag        | 还能不能取 | 活期永远是1，定期初始是1，取一次变为0 | Int    |
 | elseMoney   | 剩余钱数   | （仅做计算余额和明日需要多少钱用）    | real   |
-| staffId     | 谁办的     |                                       | int    |
+| staffNumber | 谁办的     |                                       | int    |
 
 DrawingInfo表
 
-| id        |                                        | primary key autoincrement | int    |
-| --------- | -------------------------------------- | ------------------------- | ------ |
-| depositId | 存款表中的id号                         |                           | int    |
-| money     | 取了多少钱                             |                           | real   |
-| drawDate  | 取款时间                               |                           | string |
-| elseMoney | 取完之后当时剩下了多少钱（打印存折用） |                           | real   |
-| staffId   | 谁办的                                 |                           | int    |
+| id          |                                        | primary key autoincrement | int    |
+| ----------- | -------------------------------------- | ------------------------- | ------ |
+| depositId   | 存款表中的id号                         |                           | int    |
+| money       | 取了多少钱                             |                           | real   |
+| drawDate    | 取款时间                               |                           | string |
+| elseMoney   | 取完之后当时剩下了多少钱（打印存折用） |                           | real   |
+| staffNumber | 谁办的                                 |                           | int    |
 
