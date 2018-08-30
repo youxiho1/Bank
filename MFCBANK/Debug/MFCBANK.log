@@ -1,8 +1,0 @@
-﻿  myTime.cpp
-c:\users\alex\git\bank\mfcbank\mytime.cpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-c:\users\alex\git\bank\mfcbank\mytime.cpp(62): warning C4244: “return”: 从“double”转换到“int”，可能丢失数据
-  user.cpp
-c:\users\alex\git\bank\mfcbank\user.cpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-c:\users\alex\git\bank\mfcbank\user.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  正在生成代码...
-  MFCBANK.vcxproj -> C:\Users\Alex\git\Bank\Debug\MFCBANK.exe
