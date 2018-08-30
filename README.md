@@ -53,4 +53,5 @@ DrawingInfo表
 | drawDate    | 取款时间                               |                           | string |
 | elseMoney   | 取完之后当时剩下了多少钱（打印存折用） |                           | real   |
 | staffNumber | 谁办的                                 |                           | int    |
+| interest    | 利息                                   |                           | real   |
 

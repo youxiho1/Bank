@@ -9,6 +9,7 @@ class Staff
 {
 public:
     Staff();
+    Staff(int);
     ~Staff(){}
     
     bool create_account(int, string, string);   //创建储蓄员

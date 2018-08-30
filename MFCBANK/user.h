@@ -4,23 +4,30 @@
 #include <iostream>
 #include <ctime>
 #include <string>
+#include "money.h"
+#include <vector>
 
 using namespace std;
 
 class User
 {
 public:
-  	User();
+  	User();         //初始化，变量设为null
+    User(int);      //使用账号初始化，变量从数据库提取赋值
+    
   	~User(){}
 
   	//获取用户数据
-  	int get_account(){ return account; }
-  	string get_name(){ return name; }
-  	string get_openDate(){ return openDate; }
-  	int  check_Lost(){ return isLost; }
-  	string get_lostDate(){ return lostDate; }
-  	string get_address(){ return address; }
-  	string get_idNumber(){ return idNumber; }
+    int get_account();
+    string get_name();
+    string get_openDate();
+    int  check_Lost();
+    string get_lostDate();
+    string get_address();
+    string get_idNumber();
+    
+    //获取存款信息
+    vector<Deposit> get_Depoist();
 
   	//设置用户信息
     void set_name(string newName);
@@ -33,8 +40,10 @@ public:
   	bool save();					                    //存入数据库
     void set_Lost();                                    //挂失
     void change_password(string);                       //修改密码
+    void change_account();                              //修改账号，以及账号对应的存款
     
 private:
+    int Id;
 	int account;
 	string name;
 	string hash_password;
@@ -44,6 +53,7 @@ private:
 	string address;
 	string idNumber;
 	string salt;
+    vector<Deposit> myDeposit;
   
 };
 

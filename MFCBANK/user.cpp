@@ -9,9 +9,50 @@
 using namespace std;
 
 //初始化user
-User::User():account(0),name(""),hash_password(""),openDate(""),
+User::User():Id(0),account(0),name(""),hash_password(""),openDate(""),
 			isLost(0),lostDate(""),address(""),idNumber(""),salt("")
 			{
+}
+
+User::User(int account){
+    CppSQLite3DB db;
+    db.open("bank.db");
+    string sql = "select * from user where account = " + to_string(account);
+    CppSQLite3Table t = db.getTable(sql.c_str());
+    this->Id = atoi(t.fieldValue(0));
+    this->account = account;
+    this->name = t.fieldValue(2);
+    this->hash_password = t.fieldValue(3);
+    this->openDate = t.fieldValue(4);
+    this->isLost = atoi(t.fieldValue(5));
+    this->lostDate = t.fieldValue(6);
+    this->address = t.fieldValue(7);
+    this->idNumber = t.fieldValue(8);
+    this->salt = t.fieldValue(9);
+    
+}
+
+//获取用户数据
+int User::get_account(){ return account; }
+string User::get_name(){ return name; }
+string User::get_openDate(){ return openDate; }
+int  User::check_Lost(){ return isLost; }
+string User::get_lostDate(){ return lostDate; }
+string User::get_address(){ return address; }
+string User::get_idNumber(){ return idNumber; }
+
+//获取用户存款信息
+vector<Deposit> User::get_Depoist(){
+    CppSQLite3DB db;
+    db.open("bank.db");
+    string sql = "select * from deposit where useraccount = " + to_string(this->account) + " order by id desc";
+    CppSQLite3Table t = db.getTable(sql.c_str());
+    for (int i = 0; i < t.numRows(); i++) {
+        t.setRow(i);
+        this->myDeposit.push_back(Deposit(atoi(t.fieldValue(0))));
+    }
+    db.close();
+    return  this->myDeposit;
 }
 
 //生成密码
@@ -87,7 +128,23 @@ bool User::create_account(string newName, string password,string newAddress,stri
     openDate = nowTime_to_str();
     account = newAccount();
     
+    //保证账号唯一
+    CppSQLite3DB db;
+    db.open("bank.db");
+    string sql = "select * from user where account = " + to_string(this->account);
+    CppSQLite3Table t = db.getTable(sql.c_str());
+    while (t.numRows() > 0) {
+        sql = "select * from user where account = " + to_string(++this->account);
+        t = db.getTable(sql.c_str());
+    }
+    
+    
     save();
+    
+    sql = "select * from user where account = " + to_string(this->account);
+    t = db.getTable(sql.c_str());
+    this->Id = atoi(t.fieldValue(0));
+    db.close();
     return true;
 }
 
@@ -105,12 +162,20 @@ bool User::login(int account, string password){
     string sql ="select * from user where account = " + to_string(account);
     CppSQLite3Table t = db.getTable(sql.c_str());
     db.close();
+    
+    //检查是否挂失
+    if (atoi(t.fieldValue(5)) == 1 ) {
+        return false;
+    }
+    
+    //检查账号密码
     if(t.numRows() == 1){
         hash_password = t.fieldValue(3);
         salt = t.fieldValue(9);
         string userPassword = salt + password + salt;
         userPassword = picosha2::hash256_hex_string(userPassword.begin(),userPassword.end());
         if (userPassword == hash_password) {
+            this->Id = atoi(t.fieldValue(0));
             this->account = account;
             this->name = t.fieldValue(2);
             this->openDate = t.fieldValue(4);
@@ -144,4 +209,39 @@ void User::set_address(string newAddress){
 void User::set_idNumber(string newIdNumber) {
     idNumber = newIdNumber;
     save();
+}
+
+void User::change_account(){
+    int oldAccount = this->account;
+    int newAccoun = newAccount();
+    
+    //保证账号唯一
+    CppSQLite3DB db;
+    db.open("bank.db");
+    string sql = "select * from user where account = " + to_string(newAccoun);
+    CppSQLite3Table t = db.getTable(sql.c_str());
+    while (t.numRows() > 0) {
+        sql = "select * from user where account = " + to_string(++newAccoun);
+        t = db.getTable(sql.c_str());
+    }
+    this->account = newAccoun;
+    
+    //更新账号,取消挂失
+    sql = "update user set account = " + to_string(this->account) + ", islost = " + to_string(0) + " where id = " + to_string(this->Id);
+    db.execDML(sql.c_str());
+    
+    //更新存款信息
+    sql  = "select * from deposit where useraccount = " + to_string(oldAccount);
+    CppSQLite3Table depositList = db.getTable(sql.c_str());
+    vector<int> depositIdList;
+    for (int i = 0; i < depositList.numRows(); i++) {//获取存款ID
+        depositList.setRow(i);
+        depositIdList.push_back(atoi(depositList.fieldValue(0)));
+    }
+    for (int j = 0; j < depositIdList.size(); j++) {//更新存款账号
+        sql = "update deposit set useraccount = " + to_string(this->account) + " where id = " + to_string(depositIdList[j]);
+        db.execDML(sql.c_str());
+    }
+    
+    db.close();
 }

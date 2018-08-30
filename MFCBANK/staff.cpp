@@ -11,6 +11,18 @@ using namespace std;
 Staff::Staff():name(""),hash_password(""),salt(""),number(0){
 }
 
+Staff::Staff(int Id){
+    CppSQLite3DB db;
+    db.open("bank.db");
+    string sql = "select * from staff where id = " + to_string(Id);
+    CppSQLite3Table t = db.getTable(sql.c_str());
+    db.close();
+    this->number = atoi(t.fieldValue(1));
+    this->name = t.fieldValue(2);
+    this->hash_password = t.fieldValue(3);
+    this->salt = t.fieldValue(4);
+}
+
 //生成密码
 string Staff::make_password(string password){
     this->salt = rand_str();
