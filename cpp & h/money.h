@@ -9,6 +9,7 @@ using namespace std;
 class DrawingInfo
 {
 public:
+    DrawingInfo();
     DrawingInfo(int);               //drawinginfo_ID，初始化,
     bool draw(int,double,int);      //取款
     ~DrawingInfo();
