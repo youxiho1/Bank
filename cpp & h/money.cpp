@@ -80,8 +80,6 @@ double Deposit::get_elseMoney(){return this->elseMoney;}
 
 int Deposit::get_staffNumber(){return this->staffNumber;}
 
-DrawingInfo::DrawingInfo(){
-}
 
 DrawingInfo::DrawingInfo(int id){       //存款ID，初始化
     CppSQLite3DB db;
